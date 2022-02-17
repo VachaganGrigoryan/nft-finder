@@ -1,19 +1,27 @@
+import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
-import { Account } from './interfaces/account.interface';
+import { Account, AccountDocument } from './schemas/account.schema';
+import { CreateAccountDto } from './dto/create-account.dto';
+import { InjectModel } from '@nestjs/mongoose';
+// import { Account } from './interfaces/account.interface';
 
 @Injectable()
 export class AccountService {
-  private readonly account: Account[] = [];
+  constructor(
+    @InjectModel(Account.name) private accountModel: Model<AccountDocument>,
+  ) {}
+  // private readonly account: Account[] = [];
 
-  create(account: Account) {
-    this.account.push(account);
+  async create(createAccountDto: CreateAccountDto): Promise<Account> {
+    const createAccount = new this.accountModel(createAccountDto);
+    return createAccount.save();
   }
 
-  findAll(): Account[] {
-    return this.account;
+  async findAll(): Promise<Account[]> {
+    return this.accountModel.find().exec();
   }
 
-  findBy(guid: string): Account {
-    return this.account.filter((account) => account.guid == guid).pop();
+  async findBy(guid: string): Promise<Account> {
+    return this.accountModel.findOne({ guid: guid }).exec();
   }
 }
