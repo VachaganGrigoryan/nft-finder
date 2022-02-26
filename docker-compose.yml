@@ -1,9 +1,32 @@
 version: "3"
 
 services:
+#  app:
+#    container_name: app
+#    build:
+#      context: .
+#    env_file:
+#      - env/.env.dev
+#    volumes:
+#      - .:/app
+#      - /app/node_modules
+#    ports:
+#      - 5000:5000
+#      - 9229:9229
+#    command: npm run start:dev
+#    depends_on:
+#      - mongodb
+#      - redis
+#    restart: always
+
   mongodb:
     image: mongo:latest
     environment:
       - MONGODB_DATABASE="nft-finder"
     ports:
       - 27017:27017
+
+  redis:
+    image: redis:alpine
+    ports:
+      - 6380:6380
