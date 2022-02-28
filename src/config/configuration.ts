@@ -1,5 +1,8 @@
 export default () => ({
   port: parseInt(process.env.PORT, 10) || 3000,
+
+  secretKey: process.env.SECRET_KEY,
+
   mongoose: {
     url: process.env.MONGODB_URL,
     user: process.env.MONGODB_USER,

@@ -10,10 +10,10 @@ export class AccountService {
   constructor(
     @InjectModel(Account.name) private accountModel: Model<AccountDocument>,
   ) {}
-  // private readonly account: Account[] = [];
 
   async create(createAccountDto: CreateAccountDto): Promise<Account> {
     const createAccount = new this.accountModel(createAccountDto);
+
     return createAccount.save();
   }
 
@@ -22,6 +22,10 @@ export class AccountService {
   }
 
   async findBy(guid: string): Promise<Account> {
-    return this.accountModel.findOne({ guid: guid }).exec();
+    return await this.accountModel.findOne({ guid: guid }).exec();
+  }
+
+  async findOne(username: string): Promise<Account> {
+    return this.accountModel.findOne({ username: username }).exec();
   }
 }

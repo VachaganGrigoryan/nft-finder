@@ -9,6 +9,7 @@ import configuration from './config/configuration';
 import { TasksModule } from './tasks/tasks.module';
 import { BullModule } from '@nestjs/bull';
 import { MongooseConfigService } from './config/mongoose.config.service';
+import { AuthModule } from './auth/auth.module';
 
 console.log(process.env.NODE_ENV);
 
@@ -40,8 +41,9 @@ console.log(process.env.NODE_ENV);
       },
     }),
     ScheduleModule.forRoot(),
-    TasksModule,
+    // TasksModule,
     AccountModule,
+    AuthModule,
   ],
   providers: [MongooseConfigService],
 })

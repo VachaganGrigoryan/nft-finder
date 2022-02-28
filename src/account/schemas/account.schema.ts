@@ -9,10 +9,19 @@ export class Account {
   guid: string;
 
   @Prop()
-  fullName: string;
+  username: string;
+
+  @Prop()
+  firstName: string;
+
+  @Prop()
+  lastName: string;
 
   @Prop()
   email: string;
+
+  @Prop()
+  password: string;
 }
 
 export const AccountSchema = SchemaFactory.createForClass(Account);

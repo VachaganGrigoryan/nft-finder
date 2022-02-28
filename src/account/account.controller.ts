@@ -9,7 +9,7 @@ export class AccountController {
 
   @Post()
   async create(@Body() createAccountDto: CreateAccountDto) {
-    this.accountService.create(createAccountDto);
+    return await this.accountService.create(createAccountDto);
   }
 
   @Get()
