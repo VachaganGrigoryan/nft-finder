@@ -10,4 +10,9 @@ export default () => ({
     host: process.env.DB_HOST,
     port: parseInt(process.env.DB_PORT, 10) || 27017,
   },
+
+  algo: {
+    node: process.env.ALGO_NODE_API,
+    indexer: process.env.ALGO_INDEXER_API,
+  },
 });

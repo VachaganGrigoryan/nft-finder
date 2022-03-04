@@ -10,6 +10,8 @@ import { TasksModule } from './tasks/tasks.module';
 import { BullModule } from '@nestjs/bull';
 import { MongooseConfigService } from './config/mongoose.config.service';
 import { AuthModule } from './auth/auth.module';
+import { NetworkService } from './network/network.service';
+import { NetworkModule } from './network/network.module';
 
 console.log(process.env.NODE_ENV);
 
@@ -41,11 +43,12 @@ console.log(process.env.NODE_ENV);
       },
     }),
     ScheduleModule.forRoot(),
-    // TasksModule,
+    TasksModule,
     AccountModule,
     AuthModule,
+    NetworkModule,
   ],
-  providers: [MongooseConfigService],
+  providers: [MongooseConfigService, NetworkService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer): any {

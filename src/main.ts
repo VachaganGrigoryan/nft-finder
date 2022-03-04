@@ -15,8 +15,9 @@ async function bootstrap() {
     .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api/docs', app, document);
+  SwaggerModule.setup('docs', app, document);
 
+  app.setGlobalPrefix('/api');
   await app.listen(configService.get<number>('PORT'));
   console.log(`Application is running on: ${await app.getUrl()}`);
 }

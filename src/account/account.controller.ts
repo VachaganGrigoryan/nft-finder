@@ -17,8 +17,8 @@ export class AccountController {
     return this.accountService.findAll();
   }
 
-  @Get(':guid')
-  async findBy(@Param() params): Promise<Account> {
-    return this.accountService.findBy(params.guid);
-  }
+  // @Get(':guid')
+  // async findBy(@Param() params): Promise<Account> {
+  //   return this.accountService.findBy(params.guid);
+  // }
 }
