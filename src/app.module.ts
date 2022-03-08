@@ -12,6 +12,8 @@ import { MongooseConfigService } from './config/mongoose.config.service';
 import { AuthModule } from './auth/auth.module';
 import { NetworkService } from './network/network.service';
 import { NetworkModule } from './network/network.module';
+import { NftAnalyzerModule } from './nft-analyzer/nft-analyzer.module';
+import { NotifyModule } from './notify/notify.module';
 
 console.log(process.env.NODE_ENV);
 
@@ -43,12 +45,13 @@ console.log(process.env.NODE_ENV);
       },
     }),
     ScheduleModule.forRoot(),
-    TasksModule,
+    // TasksModule,
     AccountModule,
     AuthModule,
-    NetworkModule,
+    NftAnalyzerModule,
+    // NotifyModule,
   ],
-  providers: [MongooseConfigService, NetworkService],
+  providers: [MongooseConfigService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer): any {
